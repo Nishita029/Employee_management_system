@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Salary Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <h1>Employee Salary Management System</h1>
+        <p>Manage all the records and responsibility here</p>
+    </header>
+
+    <div class="grid">
+
+        <!-- Add / Update -->
+        <div class="card">
+            <h2> Add / Update Employee</h2>
+            <input id="empId" type="number" placeholder="Employee ID">
+            <input id="name" type="text" placeholder="Employee Name">
+            <input id="salary" type="number" placeholder="Basic Salary">
+
+            <div class="buttons">
+                <button onclick="addEmployee()">Add</button>
+                <button class="success" onclick="updateEmployee()">Update</button>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="card">
+            <h2> Search Employee</h2>
+            <input id="searchId" type="number" placeholder="Employee ID">
+
+            <div class="buttons">
+                <button onclick="searchEmployee()">Search</button>
+                <button class="info" onclick="salarySlip()">Salary Slip</button>
+            </div>
+        </div>
+
+        <!-- Delete -->
+        <div class="card danger">
+            <h2> Delete Employee</h2>
+            <input id="deleteId" type="number" placeholder="Employee ID">
+
+            <div class="buttons">
+                <button class="danger-btn" onclick="deleteEmployee()">Delete</button>
+            </div>
+        </div>
+
+        <!-- Output -->
+        <div class="card output">
+            <h2> Output</h2>
+            <pre id="output">Results will appear here...</pre>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&#169; 2026 Employee Salary Management System</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
