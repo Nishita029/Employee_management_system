@@ -2,13 +2,14 @@ const BASE_URL = "http://localhost:18080";
 
 let isShowing = false;
 
-/* ---------- ASYNC SLEEP ---------- */
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-/* ---------- SHOW OUTPUT FOR 5 SECONDS (NO TIMERS) ---------- */
+
 async function showOutput(text) {
+
     // Prevent overlapping calls
     if (isShowing) return;
     isShowing = true;
@@ -26,7 +27,7 @@ async function showOutput(text) {
     isShowing = false;
 }
 
-/* ---------- HELPER FUNCTION ---------- */
+//Helper function
 async function postData(url, params) {
     try {
         const response = await fetch(url, {
@@ -42,7 +43,7 @@ async function postData(url, params) {
     }
 }
 
-/* ---------- ADD EMPLOYEE ---------- */
+
 async function addEmployee() {
     const params = new URLSearchParams();
     params.append("id", empId.value);
@@ -53,7 +54,7 @@ async function addEmployee() {
     await showOutput(result);
 }
 
-/* ---------- UPDATE EMPLOYEE ---------- */
+
 async function updateEmployee() {
     const params = new URLSearchParams();
     params.append("id", empId.value);
@@ -64,7 +65,7 @@ async function updateEmployee() {
     await showOutput(result);
 }
 
-/* ---------- DELETE EMPLOYEE ---------- */
+
 async function deleteEmployee() {
     const params = new URLSearchParams();
     params.append("id", deleteId.value);
@@ -73,7 +74,7 @@ async function deleteEmployee() {
     await showOutput(result);
 }
 
-/* ---------- SEARCH EMPLOYEE ---------- */
+
 async function searchEmployee() {
     try {
         const response = await fetch(`${BASE_URL}/search?id=${searchId.value}`);
@@ -84,7 +85,7 @@ async function searchEmployee() {
     }
 }
 
-/* ---------- SALARY SLIP ---------- */
+
 async function salarySlip() {
     try {
         const response = await fetch(`${BASE_URL}/salary?id=${searchId.value}`);

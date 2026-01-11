@@ -8,7 +8,7 @@
 using namespace httplib;
 using namespace std;
 
-/* ---------- STRUCT ---------- */
+//Structure of Employee data
 struct Employee {
     int id;
     string name;
@@ -19,14 +19,14 @@ struct Employee {
     double tax;
 };
 
-/* ---------- CORS ---------- */
+//CORS
 void enableCORS(Response &res) {
     res.set_header("Access-Control-Allow-Origin", "*");
     res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.set_header("Access-Control-Allow-Headers", "Content-Type");
 }
 
-/* ---------- SALARY CALC ---------- */
+//Salary Calculation
 void calculateSalary(Employee &e) {
     e.hra = e.basic * 0.20;
     e.da = e.basic * 0.10;
@@ -34,7 +34,7 @@ void calculateSalary(Employee &e) {
     e.tax = e.gross * 0.10;
 }
 
-/* ---------- FILE FUNCTIONS ---------- */
+//File functions
 bool findEmployee(int id, Employee &emp) {
     ifstream file("backend/employees.txt");
     if (!file) return false;
@@ -57,7 +57,7 @@ bool findEmployee(int id, Employee &emp) {
     return false;
 }
 
-/* ---------- CHECK DUPLICATE ---------- */
+//check duplicates
 bool employeeExists(int id) {
     Employee emp;
     return findEmployee(id, emp);
@@ -130,7 +130,7 @@ bool deleteEmployee(int id) {
     return found;
 }
 
-/* ---------- MAIN ---------- */
+
 int main() {
     Server server;
 
@@ -139,7 +139,7 @@ int main() {
         res.status = 204;
     });
 
-    /* ---------- ADD (NO DUPLICATES) ---------- */
+    //Add no duplicates
     server.Post("/add", [](const Request &req, Response &res) {
         enableCORS(res);
 
@@ -162,7 +162,7 @@ int main() {
         res.set_content("SUCCESS: Employee added successfully", "text/plain");
     });
 
-    /* ---------- UPDATE ---------- */
+    //Update
     server.Post("/update", [](const Request &req, Response &res) {
         enableCORS(res);
 
@@ -179,7 +179,7 @@ int main() {
             res.set_content("ERROR: Employee not found", "text/plain");
     });
 
-    /* ---------- DELETE ---------- */
+    //Delete
     server.Post("/delete", [](const Request &req, Response &res) {
         enableCORS(res);
 
@@ -191,7 +191,7 @@ int main() {
             res.set_content("ERROR: Employee not found", "text/plain");
     });
 
-    /* ---------- SEARCH ---------- */
+    //Search
     server.Get("/search", [](const Request &req, Response &res) {
         enableCORS(res);
 
@@ -210,7 +210,7 @@ int main() {
         }
     });
 
-    /* ---------- SALARY SLIP ---------- */
+    //Salary slip
     server.Get("/salary", [](const Request &req, Response &res) {
         enableCORS(res);
 
